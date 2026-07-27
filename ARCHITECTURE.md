@@ -21,7 +21,8 @@
 
 - **Core → ports:** ports consumeren uitsluitend `include/g7000.h`; de core kent de ports niet. Framebuffer RGBA8888 + mono s16-audio + joystick/keymatrix-input als volledige contractset.
 - **Build-koppeling:** _Web draait `make wasm` in de Core-checkout (zusterpad); _SteamDeck en _Android linken `libg7000.a`/bronbestanden via relatieve zusterpaden. Geen submodules — lock-step-versies + zusterpad-conventie (zelfde patroon als AmigaHorse/DOSHorse).
-- **ROM-stroom:** BIOS + carts komen ALTIJD van de eindgebruiker (file-picker/bestandspad); geen ROM verlaat het apparaat van de gebruiker (web: IndexedDB, lokaal).
+- **ROM-stroom:** BIOS + carts komen ALTIJD van de eindgebruiker (file-picker/bestandspad) of rechtstreeks van een publieke bron naar diens browser; geen ROM verlaat het apparaat via ONZE server (web: IndexedDB, lokaal). Eén uitzondering, sinds v0.5.0 en alleen in netplay: kan de medespeler een cartridge nergens zelf krijgen, dan stuurt de host hem peer-to-peer, met een melding in beeld. Dat is verkeer tussen twee mensen die samen spelen — de server ziet die bytes niet.
+- **Twee web-varianten (v0.5.0):** `/videopac/` streamt het beeld van de host naar de gast; `/videopac/2/` laat beide kanten dezelfde emulatie draaien en wisselt alleen invoer uit (deterministische lockstep). Ze delen één `app.js`, één `style.css`, één wasm en dezelfde pairing-API — de tweede pagina zet alleen `window.VPH_BASE`/`VPH_API`. Determinisme is een eigenschap van de Core en wordt daar bewaakt: `make netcheck`.
 
 ## Oorzaak/gevolg
 
