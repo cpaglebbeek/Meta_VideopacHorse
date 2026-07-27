@@ -1,5 +1,6 @@
 # ACTIONS — Meta_VideopacHorse
 
+- [ ] **ARCHITECTUUR: aparte koppelcode voor joysticks (eerst doen, 27-07)** — nu delen gast en telefoon dezelfde sessiecode; na 2 gekoppelde joysticks kan de gast niet meer koppelen ("speler 2 is bezet"). Wens gebruiker: `pair-create` levert **twee** codes — een **spelerscode** (uniek, max 1 gast = speler 2) en een **joystickcode** (max 2). Raakt: `web/api/index.php` (2e code + rolgebonden validatie), `web/pairplay.js`/`app.js` (beide codes tonen), Android-app (koppelt met joystickcode). Beslispunt dat meekomt: wat is de bedoelde bezetting als 2 joysticks én een gast willen meedoen — de console heeft maar 2 sticks.
 - [ ] **NETPLAY (eerst volgende sessie)** — BIOS+ROM-uitwisseling host→gast + deterministische lockstep i.p.v. videostream; analyse + beslispunt (ROM versturen vs. gast laadt zelf uit games.json) staat in `prompts/2026-07-27_v040_controller_pairing_netplay_open.md` (27-07)
 - [ ] **Telefoon-joystick op echt toestel testen** — APK v0.4.0-Rusch via HorseAPK; koppelen met sessiecode, max 2 (27-07)
 - [x] **S4 toetsenbord-matrixtabel** — `g7k_key_from_char` afleiden + testen tegen echte BIOS-scanroutine; daarna console-toetsenbord in de web-UI activeren (26-07) [bron: QUIRKS.md S4 + noot 1] — AFGEROND 27-07 (v0.1.2-Boris resp. archive.org-BIOS)
