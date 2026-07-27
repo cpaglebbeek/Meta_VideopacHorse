@@ -2,7 +2,7 @@
 date: 2026-07-27
 repo: Meta_VideopacHorse
 status: open
-resume: "VideopacHorse v0.5.0-Veiga staat LIVE (/videopac/ met drie codes, /videopac/2/ netplay). Open: telefoon-joystick op echt toestel testen met de nieuwe joystickcodes, VP+-fase, architectuur-viewers"
+resume: "VideopacHorse v0.5.1-Kerstens staat LIVE: netplay IS /videopac/, streamversie gearchiveerd op /videopac/stream/. Open: telefoon-joystick op echt toestel testen met de nieuwe joystickcodes, VP+-fase, architectuur-viewers"
 ---
 
 # Sessie 2026-07-27 (avond) — v0.5.0-Veiga: drie codes + netplay op /videopac/2/
@@ -98,3 +98,26 @@ DB-migratie geverifieerd op de productiedatabase (kolommen + indexen aanwezig).
   host-only); regio wisselen kan alleen buiten een sessie.
 - Ongewijzigd open: architectuur-viewers ×5, Android/SteamDeck-frontends, VP+-fase
   (EF9340/41), PRINCIPLES/DEPENDENCIES-split, Manopac-toestemming.
+
+## Naschrift — v0.5.1-Kerstens: netplay is de gewone versie geworden
+
+Opdracht aansluitend: "archiveer de schermstream-versie op /videopac en vervang door de
+simulatieversie van /videopac/2".
+
+- `/videopac/` = netplay (was `/videopac/2/`); `/videopac/stream/` = de gearchiveerde
+  streamversie; `/videopac/2/` blijft bestaan als doorverwijzing, want die URL staat in
+  documentatie en bladwijzers — een dode link is een slechtere afloop.
+- In de repo: `web/index.html` + `web/netplay.js` zijn de hoofdpagina, `web/stream/`
+  bevat het archief (met `VPH_BASE`/`VPH_API` naar boven), `web/2/index.html` is de
+  redirect. `build.sh` bustert alle drie de pagina's.
+- Deploy met `rsync --delete` na een dry-run: alleen de twee verhuisde bestanden
+  verdwenen. Backup: `/root/videopac-www.backup-voor-v051-*`.
+- Gates opnieuw: lokaal 49/49, live 29/29 (netplay 20/20 op `/videopac/`, archief 9/9 op
+  `/videopac/stream/`), `make netcheck` groen, core 86 tests groen.
+
+**Geprobeerd en teruggedraaid** (staat in `docs/BUGLIST.md`): de host een savestate laten
+sturen als hij lang wacht. Aanname was "de ander loopt achter" — precies verkeerd: wie
+stalt is zélf de kant die niet verder kan. Gemeten gevolg: host bleef op frame 15 steken
+met 8 resyncs in 20 s. Zonder dat mechanisme herstelt een onderbreking van 2,5 s én van
+6 s in **0,2-0,3 s**, want de wachtende kant is zelf ook gestopt en er is hooguit `delay`
+frames in te halen.

@@ -11,5 +11,7 @@
 - [ ] **Manopac-toestemming** — Mark Guttenbrunner (videopac.nl) vragen of de hb-tools-ROMs in een publieke testsuite mogen (26-07) [bron: O2EM_DEEPDIVE.md §5]
 - [ ] **VDC-interpretaties herzien** — 8 gedocumenteerde v0.1-canonkeuzes toetsen zodra echte-ijzer/BIOS-metingen beschikbaar zijn (26-07) [bron: QUIRKS.md noten 4-6]
 - [ ] **docs/PRINCIPLES.md + DEPENDENCIES.md** als aparte bestanden per repo (sanitycheck-P3) (26-07)
+- [x] **Streamversie archiveren, netplay als hoofdversie** — AFGEROND 27-07 (v0.5.1-Kerstens): `/videopac/` = netplay, `/videopac/stream/` = archief, `/videopac/2/` verwijst door
 - [ ] **Netplay-verfijning** — gast kan zelf nog geen telefoon-joystick koppelen (`ctrl-poll` is host-only); regio wisselen kan alleen buiten een sessie (27-07)
+- [ ] **Streamversie op termijn opruimen?** — `/videopac/stream/` staat er nu 'om te kunnen vergelijken'. Beslis over een paar weken of hij weg kan; zo niet, dan hoort er onderhoud bij (27-07)
 - [ ] **Core-test M7 onderscheidt "verkeerde ROM" niet van "emulator kapot"** — beide geven FAIL; een verkeerd bestand met de juiste naam hoort een duidelijke melding te geven (27-07)
