@@ -2,7 +2,7 @@
 date: 2026-07-27
 repo: Meta_VideopacHorse
 status: open
-resume: "VideopacHorse v0.5.2-Rocha LIVE: netplay IS /videopac/, stream gearchiveerd, audit-gaten gedicht (viewer, PRINCIPLES, DEPENDENCIES, DUPLICATES, screens, CHANGELOG). Open: telefoon-joystick op echt toestel, VP+-fase"
+resume: "VideopacHorse v0.6.0-Siera LIVE: netplay IS /videopac/, gast kan eigen telefoon-joystick koppelen (4e code + owner), vastlegging compleet. Open: telefoon-joystick op echt toestel, VP+-fase, akkoord DUPLICATES"
 ---
 
 # Sessie 2026-07-27 (avond) — v0.5.0-Veiga: drie codes + netplay op /videopac/2/
@@ -144,3 +144,28 @@ Na `/loopuntilverified`, `/sanitycheck` en `/verifyrules` (rapport gemaild, 25 b
 
 Gates na afloop: core 86/86, `make netcheck` groen, lokaal 49/49, live 29/29, configuratiepaneel
 op beide pagina's 16 kleuren + 6 maten.
+
+## Naschrift 3 — v0.6.0-Siera: de gast kan zijn eigen telefoon koppelen
+
+Laatste functionele beperking uit de netplay-ronde weggewerkt. `ctrl-poll` was host-only, dus
+een telefoon aan de gastkant bestond niet.
+
+- **Vierde code:** `pair-create` reserveert er nu ook één voor de gast; die wordt pas bij
+  `pair-join` uitgeleverd — vóór die tijd is er niemand om hem aan te geven.
+- **`owner` op controllers** (`host` of `guest`). De unieke index ging van
+  `(session, slot)` naar `(session, slot, owner)`: slot 1 kan twee rijen hebben, één per kant.
+  Dat is geen dubbele bezetting maar hetzelfde OR-model dat toetsenbord en gamepad al deelden.
+- **`ctrl-poll`** accepteert nu host- én gast-token en geeft elke kant alleen zijn eigen
+  telefoons. `ctrlPad.hostToken()` heet nu `pollToken()`.
+- **Alleen in netplay.** In de gearchiveerde streamversie draait bij de gast geen machine om
+  die invoer op toe te passen; die blijft host-only.
+
+Bewezen live: gast ziet zijn eigen code, zijn telefoon krijgt `slot 1 / owner guest`, de
+invoer verschijnt bij hem op speler 2 én komt via de lockstep bij de host aan — terwijl de
+host-telefoon op speler 2 onveranderd blijft.
+
+Gates: core 86/86, netcheck groen, lokaal 62/62 (API 28, archief 9, netplay 25), live 53/53.
+
+**Operationeel detail:** php-fpm draait met opcache (`revalidate_freq=2`). Vlak na de deploy
+toonde een `PRAGMA table_info` nog het oude schema terwijl de tests al groen waren — de
+migratie was toen simpelweg nog niet gedraaid. Vastgelegd in `docs/DEPENDENCIES.md`.
