@@ -1,3 +1,5 @@
+- [ ] **NETPLAY (eerst volgende sessie)** — BIOS+ROM-uitwisseling host→gast + deterministische lockstep i.p.v. videostream; analyse + beslispunt (ROM versturen vs. gast laadt zelf uit games.json) staat in `prompts/2026-07-27_v040_controller_pairing_netplay_open.md` (27-07)
+- [ ] **Telefoon-joystick op echt toestel testen** — APK v0.4.0-Rusch via HorseAPK; koppelen met sessiecode, max 2 (27-07)
 # ACTIONS — Meta_VideopacHorse
 
 - [ ] **S4 toetsenbord-matrixtabel** — `g7k_key_from_char` afleiden + testen tegen echte BIOS-scanroutine; daarna console-toetsenbord in de web-UI activeren (26-07) [bron: QUIRKS.md S4 + noot 1]
