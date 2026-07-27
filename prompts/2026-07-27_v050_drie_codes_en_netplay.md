@@ -2,7 +2,7 @@
 date: 2026-07-27
 repo: Meta_VideopacHorse
 status: open
-resume: "VideopacHorse v0.5.1-Kerstens staat LIVE: netplay IS /videopac/, streamversie gearchiveerd op /videopac/stream/. Open: telefoon-joystick op echt toestel testen met de nieuwe joystickcodes, VP+-fase, architectuur-viewers"
+resume: "VideopacHorse v0.5.2-Rocha LIVE: netplay IS /videopac/, stream gearchiveerd, audit-gaten gedicht (viewer, PRINCIPLES, DEPENDENCIES, DUPLICATES, screens, CHANGELOG). Open: telefoon-joystick op echt toestel, VP+-fase"
 ---
 
 # Sessie 2026-07-27 (avond) — v0.5.0-Veiga: drie codes + netplay op /videopac/2/
@@ -121,3 +121,26 @@ stalt is zélf de kant die niet verder kan. Gemeten gevolg: host bleef op frame 
 met 8 resyncs in 20 s. Zonder dat mechanisme herstelt een onderbreking van 2,5 s én van
 6 s in **0,2-0,3 s**, want de wachtende kant is zelf ook gestopt en er is hooguit `delay`
 frames in te halen.
+
+## Naschrift 2 — v0.5.2-Rocha: alle audit-bevindingen opgepakt
+
+Na `/loopuntilverified`, `/sanitycheck` en `/verifyrules` (rapport gemaild, 25 beweringen,
+96% verifieerbaar) zijn alle bevindingen weggewerkt:
+
+| Bevinding | Actie |
+|---|---|
+| `update_resume.py` niet idempotent — schreef elke run een nieuwe timestamp, waardoor Meta_Master na iedere beurt "dirty" stond | Schrijft nu alleen bij een inhoudsverschil. Getest: twee runs met een minuut ertussen geven dezelfde md5; bij een echte wijziging schrijft hij wél |
+| Configuratiepaneel stond dubbel in beide pagina's (≈100 regels) | `buildConfigPanel()` in `app.js` bouwt het op uit `CFG_COLORS`/`CFG_RANGES`/`CFG_FONTS`. Bijvangst: `--btn-primary-text` ontbrak in het handmatige paneel; dekking nu 16/16 |
+| Transactie-boilerplate dubbel in `api/index.php` | `inImmediateTransaction()` — beide endpoints gebruiken hem; API-suite 20/20 |
+| Duplicatie totaal | 120 → 72 regels (2,2% → 1,3%); de rest staat in `docs/DUPLICATES.md` met reden en een akkoordvraag per item |
+| `DESIGN_TOKENS.md` liep achter op `style.css` | Bijgewerkt: waar de tokens staan, hoe het paneel wordt opgebouwd, en de nieuwe componenten (codebox, netstats, archiefbadge) |
+| Testsuite meldde een mislukte WebRTC-verbinding als codefout | Exit 2 met uitleg + één herkansing in `run.sh`. Gemeten faalkans lokaal: ~1 op 5 |
+| Core-test M7 gaf FAIL bij een verkéérd bestand | Nu SKIP met uitleg op stderr; juiste ROM blijft 86/86 |
+| `docs/PRINCIPLES.md` ontbrak | 12 principes mét het waarom, elk herleidbaar naar een beslissing of een gemaakte fout |
+| `docs/DEPENDENCIES.md` ontbrak | Per eenheid: waar hangt hij van af én wat breekt er als hij wijzigt, inclusief de afspraken die niet in code staan |
+| `docs/screens/` ontbrak | 5 schermreferenties + README met doel, doelgroep en boodschap per scherm |
+| `CHANGELOG.md` ontbrak | Uit de git-historie gegenereerd, 12 releases |
+| Architectuur-viewer ontbrak | `architectuur/VideopacHorse_Web_viewer.html`: standalone, 5 views, animatie op twee scenario's, ArchiMate ↔ Dragon1, export naar json/dsl/archimate/svg. Eén aanpassing t.o.v. het sjabloon: `fitViewBox()`, want elke view toont een andere doorsnede en die ligt zelden linksboven — zonder auto-fit viel de halve plaat buiten beeld. Bron-DSL ernaast, DSL-B-compatibel |
+
+Gates na afloop: core 86/86, `make netcheck` groen, lokaal 49/49, live 29/29, configuratiepaneel
+op beide pagina's 16 kleuren + 6 maten.

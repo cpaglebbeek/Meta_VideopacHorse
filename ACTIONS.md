@@ -5,13 +5,15 @@
 - [ ] **Telefoon-joystick op echt toestel testen** — APK **v0.5.0-Veiga** via HorseAPK; koppelen met een **joystickcode** (P1 of P2), één telefoon per plek (27-07)
 - [x] **S4 toetsenbord-matrixtabel** — `g7k_key_from_char` afleiden + testen tegen echte BIOS-scanroutine; daarna console-toetsenbord in de web-UI activeren (26-07) [bron: QUIRKS.md S4 + noot 1] — AFGEROND 27-07 (v0.1.2-Boris resp. archive.org-BIOS)
 - [x] **Game-smoke met echte BIOS** — Christian levert `o2rom.bin` (md5 562d5ebf9e030a40d6fabfc2f33139fd) aan; dan `tools/g7k_run --bios ... --cart vp_14.bin` + browser-test met Gunfighter/Thunderball/vp_01pl (26-07) — AFGEROND 27-07 (v0.1.2-Boris resp. archive.org-BIOS)
-- [ ] **Architectuur-viewers ×5** — `architectuur/<repo>_viewer.html` per repo (sanitycheck-P2, geparkeerd t.b.v. web-livegang) (26-07)
+- [x] **Architectuur-viewer _Web** — AFGEROND 28-07 (v0.5.2-Rocha): `VideopacHorse_Web/architectuur/` met viewer + bron-DSL. Nog open voor Core/Android/SteamDeck/Joystick
+- [ ] **Architectuur-viewers overige 4 repos** — zelfde sjabloon, model uit ARCHITECTURE.md van die repo (28-07)
 - [ ] **VideopacHorse_Android promotie** — volledig Gradle-project + APK via HorseAPK-flow (eigen Oranje release) (26-07)
 - [ ] **VideopacHorse_SteamDeck promotie** — Flatpak-bundle bouwen + /Deploy2SteamDeck e2e (26-07)
 - [ ] **Manopac-toestemming** — Mark Guttenbrunner (videopac.nl) vragen of de hb-tools-ROMs in een publieke testsuite mogen (26-07) [bron: O2EM_DEEPDIVE.md §5]
 - [ ] **VDC-interpretaties herzien** — 8 gedocumenteerde v0.1-canonkeuzes toetsen zodra echte-ijzer/BIOS-metingen beschikbaar zijn (26-07) [bron: QUIRKS.md noten 4-6]
-- [ ] **docs/PRINCIPLES.md + DEPENDENCIES.md** als aparte bestanden per repo (sanitycheck-P3) (26-07)
+- [x] **docs/PRINCIPLES.md + DEPENDENCIES.md** — AFGEROND 28-07 voor _Web (12 principes + afhankelijkheidsmatrix). Nog open voor de andere repo's
+- [ ] **Akkoord gevraagd op `docs/DUPLICATES.md`** — DUP-003 t/m DUP-006 wachten op jouw ja of nee (28-07)
 - [x] **Streamversie archiveren, netplay als hoofdversie** — AFGEROND 27-07 (v0.5.1-Kerstens): `/videopac/` = netplay, `/videopac/stream/` = archief, `/videopac/2/` verwijst door
 - [ ] **Netplay-verfijning** — gast kan zelf nog geen telefoon-joystick koppelen (`ctrl-poll` is host-only); regio wisselen kan alleen buiten een sessie (27-07)
 - [ ] **Streamversie op termijn opruimen?** — `/videopac/stream/` staat er nu 'om te kunnen vergelijken'. Beslis over een paar weken of hij weg kan; zo niet, dan hoort er onderhoud bij (27-07)
-- [ ] **Core-test M7 onderscheidt "verkeerde ROM" niet van "emulator kapot"** — beide geven FAIL; een verkeerd bestand met de juiste naam hoort een duidelijke melding te geven (27-07)
+- [x] **Core-test M7 onderscheidt "verkeerde ROM" van "emulator kapot"** — AFGEROND 28-07: verkeerd bestand geeft SKIP met uitleg op stderr
