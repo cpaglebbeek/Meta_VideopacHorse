@@ -2,7 +2,7 @@
 date: 2026-07-27
 repo: Meta_VideopacHorse
 status: open
-resume: "VideopacHorse v0.6.0-Siera LIVE: netplay IS /videopac/, gast kan eigen telefoon-joystick koppelen (4e code + owner), vastlegging compleet. Open: telefoon-joystick op echt toestel, VP+-fase, akkoord DUPLICATES"
+resume: "VideopacHorse v0.6.1-Radiola LIVE (docs + architectuurplaat online op /videopac/docs/ en /videopac/architectuur/): netplay IS /videopac/, gast kan eigen telefoon-joystick koppelen (4e code + owner), vastlegging compleet. Open: telefoon-joystick op echt toestel, VP+-fase, akkoord DUPLICATES"
 ---
 
 # Sessie 2026-07-27 (avond) — v0.5.0-Veiga: drie codes + netplay op /videopac/2/
@@ -169,3 +169,23 @@ Gates: core 86/86, netcheck groen, lokaal 62/62 (API 28, archief 9, netplay 25),
 **Operationeel detail:** php-fpm draait met opcache (`revalidate_freq=2`). Vlak na de deploy
 toonde een `PRAGMA table_info` nog het oude schema terwijl de tests al groen waren — de
 migratie was toen simpelweg nog niet gedraaid. Vastgelegd in `docs/DEPENDENCIES.md`.
+
+## Naschrift 4 — v0.6.1-Radiola: ontwerpdocumenten en plaat online
+
+Opdracht: "render ontwerpdocumenten en architectuurviewer en plaats links op pagina van videopac".
+
+- `tools/render_docs.py` zet de tien markdown-documenten om naar `web/docs/`, met een
+  index die per document zegt waarover het gaat. Afhankelijkheidsvrij (geen pandoc — die
+  staat niet op HC55) en de opmaak hergebruikt `web/style.css`, dus licht/donker en alle
+  tokens werken er meteen.
+- De architectuurplaat staat op `/videopac/architectuur/`, inclusief de bron-DSL.
+- **Beide zijn build-artefacten**: `build.sh` rendert ze en vult de `@VERSION@`-marker in de
+  viewer. Handmatig bijwerken zou een tweede kopie opleveren die uit de pas loopt — precies
+  wat P-4 verbiedt, en de reden dat het configuratiepaneel eerder al is opgeruimd.
+- Op de emulator-pagina een kaart "Hoe dit ding in elkaar zit" met vier verwijzingen; het
+  archief heeft ze in de footer.
+
+Vóór publicatie gecontroleerd dat er geen serverpaden, tokens of wachtwoorden in de
+documenten staan — de repo is publiek (AGPL-3.0), maar dat maakt de check niet overbodig.
+
+Live geverifieerd: 14 paden, alle 200 met de juiste titel; gate opnieuw 62/62.
