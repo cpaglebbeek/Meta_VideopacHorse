@@ -9,7 +9,7 @@ Philips Videopac G7000 / Magnavox Odyssey² met één portable C11-core en drie 
 |---|---|---|
 | Meta_VideopacHorse | regie, ecosysteem-docs, versie-orchestratie | `~/Documents/Gemini_Projects/Meta_VideopacHorse` |
 | VideopacHorse_Core | C11 emulator-engine (`include/g7000.h` = API) | `.../VideopacHorse_Core` |
-| VideopacHorse_Web | WASM-frontend — LIVE-doel `horsecloud55.ddns.net/videopac/` | `.../VideopacHorse_Web` |
+| VideopacHorse_Web | WASM-frontend — LIVE-doel `icthorsecloud.nl/videopac/` | `.../VideopacHorse_Web` |
 | VideopacHorse_Android | Kotlin + NDK/JNI-frontend (placeholder) | `.../VideopacHorse_Android` |
 | VideopacHorse_SteamDeck | SDL2 + Flatpak-frontend (placeholder, `/Deploy2SteamDeck`) | `.../VideopacHorse_SteamDeck` |
 

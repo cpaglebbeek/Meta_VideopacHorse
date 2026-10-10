@@ -64,7 +64,7 @@ Beide kanten draaien dezelfde emulatie; alleen invoer gaat over de lijn.
 | `tests/api_test.sh` | 20/20 — rollen, één telefoon per plek, 6 gelijktijdige joins → precies 1 winnaar |
 | `tests/pairplay_e2e.py` | 9/9 — gast joint mét 2 telefoons; host ziet stand **24 = 8 \| 16** op speler 2 |
 | `tests/netplay_e2e.py` | 20/20 — state-hash gelijk op hetzelfde framenummer, telefoon-P2 werkt door tot bij de gast, onderbrekingen gemeld |
-| Live op HC55 | pairplay 9/9 + netplay 20/20 tegen `https://horsecloud55.ddns.net/videopac/` |
+| Live op HC55 | pairplay 9/9 + netplay 20/20 tegen `https://icthorsecloud.nl/videopac/` |
 
 Gemeten snelheid live, twee losse browsers: **44-49 van de 50 PAL-frames/s**, RTT 26-28 ms,
 0 desyncs.

@@ -4,7 +4,7 @@ Regie-repo van de **VideopacHorse**-familie: emulatie van de Philips Videopac G7
 (Magnavox Odyssey²) — één portable C11-core, drie frontends (Web/WASM, Android, Steam Deck).
 
 - Engine: [VideopacHorse_Core](https://github.com/cpaglebbeek/VideopacHorse_Core)
-- Web: [VideopacHorse_Web](https://github.com/cpaglebbeek/VideopacHorse_Web) → `horsecloud55.ddns.net/videopac/`
+- Web: [VideopacHorse_Web](https://github.com/cpaglebbeek/VideopacHorse_Web) → `icthorsecloud.nl/videopac/`
 - Android: [VideopacHorse_Android](https://github.com/cpaglebbeek/VideopacHorse_Android)
 - Steam Deck: [VideopacHorse_SteamDeck](https://github.com/cpaglebbeek/VideopacHorse_SteamDeck)
 
